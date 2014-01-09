@@ -2,7 +2,7 @@ all: getScripts extractLines
 
 extractLines: all_lines.txt
 
-allLines.txt: getScripts
+all_lines.txt: getScripts
 	coffee src/all.coffee > $@
 
 getScripts: s1 s2 s3 s4 s5 s6 s7
