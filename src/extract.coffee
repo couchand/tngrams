@@ -8,6 +8,7 @@ isDialog = (p) ->
 
 extract = (file) ->
     fs.readFile file, (err, body) ->
+        throw err if err?
         $ = cheerio.load body.toString()
 
         $("p").map (i, p) ->
