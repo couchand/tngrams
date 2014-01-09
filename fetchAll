@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# fetch all episodes listed in the given season index
+
+base="http://antoa.com/tng/scripts/"
+
+for ep in `cat $1` ; do
+
+  curl --create-dirs "$base""$ep" -o "$ep"
+  sleep 10
+
+done
