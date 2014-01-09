@@ -1,7 +1,9 @@
 all: getScripts extractLines
 
-extractLines: getScripts
-	grep "^  " seasonone/* seasontwo/* seasonthree/* seasonfour/* seasonfive/* seasonsix/* seasonseven/*
+extractLines: all_lines.txt
+
+allLines.txt: getScripts
+	coffee src/all.coffee > $@
 
 getScripts: s1 s2 s3 s4 s5 s6 s7
 
