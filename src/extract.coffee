@@ -20,6 +20,9 @@ extract = (season, episode, file) ->
             episode: episode
             character: t.split("\n")[0]
                 .replace(/\([^)]*\)/g, '')
+                .replace(/'S COM VOICE/, '')
+                .replace(/'S VOICE/, '')
+                .replace(/"Q"/, "Q")
                 .trim()
             line: t.split("\n")
                 .slice(1)
