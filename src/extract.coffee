@@ -7,26 +7,27 @@ isDialog = (p) ->
     /^ *[-.A-Z'"()][-.A-Z0-9 '"()]*\r/.test p
 
 extract = (season, episode, file) ->
-    fs.readFile file, (err, body) ->
-        throw err if err?
-        $ = cheerio.load body.toString()
+    body = fs.readFileSync(file)
+    $ = cheerio.load body.toString()
 
-        $("p").map (i, p) ->
-            t = $(p).text()
-            return unless isDialog t
-            console.log t
-            d =
-                season: season
-                episode: episode
-                character: t.split("\n")[0]
-                    .replace(/\([^)]*\)/g, '')
-                    .trim()
-                line: t.split("\n")
-                    .slice(1)
-                    .map((l) -> l.trim())
-                    .join(" ")
-                    .replace(/\([^)]*\)/g, '')
-                    .trim()
-            console.log d
+    lines = []
+
+    $("p").map (i, p) ->
+        t = $(p).text()
+        return unless isDialog t
+        lines.push
+            season: season
+            episode: episode
+            character: t.split("\n")[0]
+                .replace(/\([^)]*\)/g, '')
+                .trim()
+            line: t.split("\n")
+                .slice(1)
+                .map((l) -> l.trim())
+                .join(" ")
+                .replace(/\([^)]*\)/g, '')
+                .trim()
+
+    lines
 
 module.exports = extract
