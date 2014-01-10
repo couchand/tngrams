@@ -4,8 +4,19 @@ fs = require 'fs'
 path = require 'path'
 extract = require './extract'
 
-season = (name) ->
-    dir = "season#{name}"
+word = [
+    'zero'
+    'one'
+    'two'
+    'three'
+    'four'
+    'five'
+    'six'
+    'seven'
+]
+
+season = (num) ->
+    dir = "season#{word[num]}"
     fs.readdir dir, (err, files) ->
         throw err if err?
         files.forEach (file) ->
