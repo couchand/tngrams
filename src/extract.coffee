@@ -6,7 +6,7 @@ cheerio = require 'cheerio'
 isDialog = (p) ->
     /^ *[-.A-Z'"()][-.A-Z0-9 '"()]*\r/.test p
 
-extract = (file) ->
+extract = (season, episode, file) ->
     fs.readFile file, (err, body) ->
         throw err if err?
         $ = cheerio.load body.toString()
@@ -16,6 +16,8 @@ extract = (file) ->
             return unless isDialog t
             console.log t
             d =
+                season: season
+                episode: episode
                 character: t.split("\n")[0].trim()
                 line: t.split("\n")
                     .slice(1)

@@ -20,6 +20,8 @@ season = (num) ->
     fs.readdir dir, (err, files) ->
         throw err if err?
         files.forEach (file) ->
-            extract path.join dir, file
+            name = file.replace /.htm/, ''
+            source = path.join dir, file
+            extract num, name, source
 
 module.exports = season
