@@ -18,7 +18,9 @@ extract = (season, episode, file) ->
             d =
                 season: season
                 episode: episode
-                character: t.split("\n")[0].trim()
+                character: t.split("\n")[0]
+                    .replace(/\([^)]*\)/g, '')
+                    .trim()
                 line: t.split("\n")
                     .slice(1)
                     .map((l) -> l.trim())
