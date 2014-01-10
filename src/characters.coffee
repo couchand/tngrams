@@ -9,10 +9,15 @@ for line in lines
     counts[line.character] ?= 0
     counts[line.character]++
 
-module.exports = ([k, v] for k, v of counts).sort (a,b) ->
+byCount = (a,b) ->
     if a[1] is b[1]
         0
     else if a[1] < b[1]
         1
     else
         -1
+
+overall = ([k, v] for k, v of counts).sort byCount
+
+module.exports =
+    overall: overall
