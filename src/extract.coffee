@@ -13,6 +13,14 @@ extract = (file) ->
 
         $("p").map (i, p) ->
             t = $(p).text()
-            console.log t if isDialog t
+            return unless isDialog t
+            console.log t
+            d =
+                character: t.split("\n")[0].trim()
+                line: t.split("\n")
+                    .slice(1)
+                    .map((l) -> l.trim())
+                    .join(" ")
+            console.log d
 
 module.exports = extract
