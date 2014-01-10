@@ -23,6 +23,8 @@ extract = (season, episode, file) ->
                 .replace(/'S COM VOICE/, '')
                 .replace(/'S VOICE/, '')
                 .replace(/"Q"/, "Q")
+                .replace(/OGAWA/, "KEIKO")
+                .replace(/MRS. TROI/, "LWAXANA")
                 .trim()
             line: t.split("\n")
                 .slice(1)
