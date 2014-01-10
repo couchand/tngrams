@@ -17,11 +17,12 @@ word = [
 
 season = (num) ->
     dir = "season#{word[num]}"
-    fs.readdir dir, (err, files) ->
-        throw err if err?
-        files.forEach (file) ->
-            name = file.replace /.htm/, ''
-            source = path.join dir, file
-            extract num, name, source
+    lines = []
+    files = fs.readdirSync dir
+    files.forEach (file) ->
+        name = file.replace /.htm/, ''
+        source = path.join dir, file
+        lines = lines.concat extract num, name, source
+    lines
 
 module.exports = season
