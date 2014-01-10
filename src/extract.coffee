@@ -23,6 +23,8 @@ extract = (season, episode, file) ->
                     .slice(1)
                     .map((l) -> l.trim())
                     .join(" ")
+                    .replace(/\([^)]*\)/g, '')
+                    .trim()
             console.log d
 
 module.exports = extract
